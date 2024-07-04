@@ -1,10 +1,21 @@
 // pages/admin/visits.tsx
 import { useEffect, useState } from 'react';
-import { getAllVisits, deleteVisit } from '../../models/Visit'; // models/Visit.ts dosyasından import edildi.
+import { getAllVisits, deleteVisit } from '../../models/Visit';
 
+interface Visit {
+  id: number;
+  ip: string;
+  userAgent: string;
+  country: string | null;
+  city: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  device: string | null;
+  createdAt: Date;
+}
 
 export default function Visits() {
-  const [visits, setVisits] = useState([]);
+  const [visits, setVisits] = useState<Visit[]>([]);
 
   useEffect(() => {
     fetchVisits();
@@ -30,7 +41,7 @@ export default function Visits() {
 
   return (
     <div>
-      <h1>Ziyaretciler</h1>
+      <h1>Ziyaretçiler</h1>
       <table>
         <thead>
           <tr>
@@ -42,7 +53,7 @@ export default function Visits() {
             <th>Cihaz</th>
             <th>IP</th>
             <th>User Agent</th>
-            <th>islem</th>
+            <th>İşlem</th> {/* Türkçe karakter düzeltilmiş */}
           </tr>
         </thead>
         <tbody>
