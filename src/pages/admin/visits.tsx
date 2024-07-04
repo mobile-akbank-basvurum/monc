@@ -14,7 +14,7 @@ interface Visit {
   createdAt: Date;
 }
 
-export default function Visits() {
+const Visits: React.FC = () => {
   const [visits, setVisits] = useState<Visit[]>([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Visits() {
 
   const fetchVisits = async () => {
     try {
-      const response = await getAllVisits();
+      const response: Visit[] = await getAllVisits();
       setVisits(response);
     } catch (error) {
       console.error('Error fetching visits:', error);
@@ -53,7 +53,7 @@ export default function Visits() {
             <th>Cihaz</th>
             <th>IP</th>
             <th>User Agent</th>
-            <th>İşlem</th> {/* Türkçe karakter düzeltilmiş */}
+            <th>İşlem</th>
           </tr>
         </thead>
         <tbody>
@@ -76,4 +76,6 @@ export default function Visits() {
       </table>
     </div>
   );
-}
+};
+
+export default Visits;
