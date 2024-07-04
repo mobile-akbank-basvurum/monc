@@ -1,4 +1,3 @@
-// pages/admin/visits.tsx
 import { useEffect, useState } from 'react';
 import { getAllVisits, deleteVisit } from '../../models/Visit';
 
@@ -15,7 +14,7 @@ interface Visit {
 }
 
 const Visits: React.FC = () => {
-  const [visits, setVisits] = useState<Visit[]>([]); // Doğru tip belirtiliyor.
+  const [visits, setVisits] = useState<Visit[]>([]);
 
   useEffect(() => {
     fetchVisits();
