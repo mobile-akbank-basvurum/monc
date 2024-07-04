@@ -1,17 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllVisits, deleteVisit } from '../../models/Visit';
-
-interface Visit {
-  id: number;
-  ip: string;
-  userAgent: string;
-  country: string | null;
-  city: string | null;
-  latitude: number | null;
-  longitude: number | null;
-  device: string | null;
-  createdAt: Date;
-}
+import { getAllVisits, deleteVisit, Visit } from '../../models/Visit';
 
 const Visits: React.FC = () => {
   const [visits, setVisits] = useState<Visit[]>([]);
@@ -22,7 +10,7 @@ const Visits: React.FC = () => {
 
   const fetchVisits = async () => {
     try {
-      const response: Visit[] = await getAllVisits();
+      const response = await getAllVisits();
       setVisits(response);
     } catch (error) {
       console.error('Error fetching visits:', error);
