@@ -15,7 +15,7 @@ interface Visit {
 }
 
 const Visits: React.FC = () => {
-  const [visits, setVisits] = useState<Visit[]>([]);
+  const [visits, setVisits] = useState<Visit[]>([]); // Doğru tip belirtiliyor.
 
   useEffect(() => {
     fetchVisits();
