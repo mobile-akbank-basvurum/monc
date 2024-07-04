@@ -2,23 +2,24 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function getAllVisits(): Promise<Visit[]> {
-  const visits = await prisma.visit.findMany();
-  return visits.map((visit) => ({
-    id: visit.id,
-    ip: visit.ip,
-    userAgent: visit.userAgent,
-    country: visit.country,
-    city: visit.city,
-    latitude: visit.latitude,
-    longitude: visit.longitude,
-    device: visit.device,
-    createdAt: visit.createdAt,
-  }));
+export interface Visit {
+  id: number;
+  ip: string;
+  userAgent: string;
+  country: string | null;
+  city: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  device: string | null;
+  createdAt: Date;
 }
 
-export async function deleteVisit(id: number) {
-  return prisma.visit.delete({
+export async function getAllVisits(): Promise<Visit[]> {
+  return prisma.visit.findMany();
+}
+
+export async function deleteVisit(id: number): Promise<void> {
+  await prisma.visit.delete({
     where: {
       id,
     },
